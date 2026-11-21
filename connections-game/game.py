@@ -19,3 +19,23 @@ class nytConnections:
         # Keep a record of all past guesses as well to ensure repeat guesses are not accepted
         self.past_guesses = []
 
+    def guess(self, words):
+        user_guess = set(words)
+        if (len(user_guess) != 4) or not (user_guess <= self.remaining) or (user_guess in self.past_guesses):
+            # EXPAND ON THIS LATER (MORE ERRORS?)
+            return "Invalid Guess"
+        self.past_guesses.append(user_guess)
+
+        for group in self.groups:
+            if (user_guess == group):
+                self.connections.append(user_guess)
+                self.remaining -= group
+                self.remaining_connections -= 1
+                return "Correct"
+
+        self.mistakes_left -= 1
+
+        for group in self.groups:
+            if len(user_guess & group) == 3:
+                return "One Away!"
+        return "Incorrect"

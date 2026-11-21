@@ -13,9 +13,10 @@ groups = [
 
 g = nytConnections(groups)
 
-print(g.guess(["snow", "ice", "frost", "cold"]))   # correct
-print(g.guess(["fire", "flame", "heat", "cat"]))    # one_away
-print(g.guess(["fire", "flame", "heat", "cat"]))     # invalid (repeat)
-print(g.guess(["snow", "fire", "flame", "heat"]))   # invalid (snow already solved)
-print(g.guess(["fire", "cat", "red", "dog"]))       # incorrect
+# GUESSES MUST BE IN CAPS
+print(g.guess(["SNOW", "ICE", "FROST", "COLD"]))   # correct
+print(g.guess(["FIRE", "FLAME", "HEAT", "CAT"]))    # one away
+print(g.guess(["FIRE", "FLAME", "HEAT", "CAT"]))     # invalid (repeat)
+print(g.guess(["SNOW", "FIRE", "FLAME", "HEAT"]))   # invalid (already solved)
+print(g.guess(["FIRE", "CAT", "RED", "DOG"]))       # incorrect
 print(g.mistakes_left)  
