@@ -39,3 +39,14 @@ class nytConnections:
             if len(user_guess & group) == 3:
                 return "One Away!"
         return "Incorrect"
+
+    def is_won(self):
+        return self.remaining_connections == 0
+
+    def is_over(self):
+        return self.is_won() or self.mistakes_left == 0
+
+    def return_current_board(self):
+        # Return the current board and what words remain. This is sorted
+        # so that our random solver is able to have consistent inputs
+        return sorted(self.remaining)
