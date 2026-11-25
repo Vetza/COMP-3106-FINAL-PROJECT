@@ -71,11 +71,17 @@ def compute_sound_features(words: list[str] | tuple[str, ...]) -> dict[str, floa
 
     if len(valid_prons) < 2:
         return {
+            # Average sound similarity across the pairs
             "sound_mean_phoneme_sim": 0.0,
+            # Most similar pair
             "sound_max_phoneme_sim": 0.0,
+            # Fraction of pairs that rhyme
             "sound_rhyme_ratio": 0.0,
+            # Fraction of pairs that are homophones
             "sound_homophone_ratio": 0.0,
+            # How much the syllable counts vary
             "sound_syllable_std": 0.0,
+            # How many words were not in the dictionary
             "sound_missing_count": float(missing_count),
         }
 

@@ -1,3 +1,5 @@
+# This file looks at how words are written, ignoring meaning. 
+
 from difflib import SequenceMatcher
 from itertools import combinations
 import numpy as np
@@ -43,9 +45,13 @@ def compute_spelling_features(words: list[str] | tuple[str, ...]) -> dict[str, f
 
     if len(valid) < 2:
         return {
+            # Average letter-sequence similarity across the pairs
             "spell_mean_seq_sim": 0.0,
+            # Average overlap of the set of letters used (shared letters / all distinct letters)
             "spell_mean_char_jaccard": 0.0,
+            # Shared start
             "spell_common_prefix_len": 0.0,
+            # Shared end 
             "spell_common_suffix_len": 0.0,
             "spell_shared_substr_len": 0.0,
             "spell_len_std": 0.0,

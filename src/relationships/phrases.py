@@ -1,3 +1,7 @@
+# Checks whether a phrase is a real word:
+# It builds two versions, joined with no spaces ("icecream"), and underscored ("ice_cream"), 
+# which is the way WordNet writes phrases.
+
 from nltk.corpus import wordnet as wn
 from src.relationships.connectors import COMMON_CONNECTORS
 from src.relationships.text_utils import normalize_clue

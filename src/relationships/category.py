@@ -1,7 +1,16 @@
+# Uses WordNet, which is a dictionary that arranges word meanings in a tree,
+# (for more info, see group proposal document). This helps us check
+# whether 4 words belong to the same category.
+
 from itertools import combinations
 import numpy as np
 from nltk.corpus import wordnet as wn
 from src.relationships.text_utils import normalize_clue
+
+# A synset (synonym set) is one meaning of a word, together with the other words that share that meaning 
+# Ex. wn.synsets("mouse") returns:
+#     mouse.n.01: The small rodent
+#     mouse.n.02: The computer pointing device
 
 # Function that gets the synsets of a word, checking the categories that a word is apart of
 def _get_synsets(clue: str):
@@ -53,9 +62,13 @@ def compute_category_features(words: list[str] | tuple[str, ...]) -> dict[str, f
 
     if not pair_sims:
         return {
+            # Average pair similarity
             "wn_mean_sim": 0.0,
+            # Highest pair similarity
             "wn_max_sim": 0.0,
+            # Fraction of pairs sharing a broader category
             "wn_shared_hypernym_ratio": 0.0,
+            # Words not found in WordNet dictionary
             "wn_missing_count": float(missing_count),
         }
 
