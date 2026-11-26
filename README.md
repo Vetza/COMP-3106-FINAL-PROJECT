@@ -21,3 +21,28 @@ py src/prepare_data.py     # build data/processed/train.json, tune.json, test.js
 In code: `from src.prepare_data import load_split` then `load_split("train")`.
 
 See [docs/DATASET.md](docs/DATASET.md) for the full dataset format and preparation steps.
+
+## Baseline Solvers
+
+### Random solver
+
+Guesses 4 random words from the board each turn until the game ends (4 mistakes or all groups found). Repeated guesses are skipped.
+
+**To test it** (from the project folder):
+
+```
+python main.py
+```
+
+This plays every puzzle in the tune set (126 puzzles) with the random solver. 
+
+With a fixed seed (`random.seed(0)`), the result after a run:
+
+```
+Random: 0/126 wins, 0.02 groups solved on average
+```
+
+- **wins**: puzzles where all 4 groups were found before the 4th mistake.
+- **groups solved**: average number of groups found per puzzle, out of 4.
+
+Random guessing almost never wins, so this is the lowest score a solver can get. The other solvers should do better than it. 
